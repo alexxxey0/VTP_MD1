@@ -1,0 +1,223 @@
+Multichar_Symbols
+    +N      ! Noun tag (существительное)
+    +Sg     ! Singular (единственное число)
+    +Pl     ! Plural (множественное число)
+    +Nom    ! Nominative (именительный падеж)
+    +Gen    ! Genitive (родительный падеж)
+    +Dat    ! Dative (дательный падеж)
+    +Acc    ! Accusative (винительный падеж)
+    +Ins    ! Instrumental (творительный падеж)
+    +Pre    ! Prepositional (предложный падеж)
+    
+! Define root lexicon
+
+LEXICON Root
+    Nouns ; ! No input, no output
+
+! Define noun lexicon
+! Russian has 3 noun declensions:
+! Declension 1 - masculine or feminine nouns that end in -а or -я
+! Declension 2 - masculine nouns that end in a consonant, in a -ь, or in a -й and neuter words that end in -о or -е
+! Declension 3 - feminine nouns that end in -ь
+
+! Due to the complex nature of Russian noun declension (each declension has multiple sub-declensions in it, based on the animacy, the last letter of the stem and other factors), this lexicon will not cover all of the possible cases.
+! We will consider the following words:
+! стена - wall
+! зарплата - salary
+! буря - storm
+! стол - table
+! рот - mouth
+! адвокат - lawyer
+! человек - human
+! озеро - lake
+! поле - field
+! кровать - bed
+! тетрадь - notebook
+! мать - mother
+! шоссе - highway
+
+LEXICON Nouns
+    стен N1dekl_a;
+    зарплат N1dekl_a;
+    бур N1dekl_ya;
+
+    стол N2dekl_cons_ply; ! ply - Plural Nominative has -ы
+    рот N2dekl_cons_ply;
+    крюк N2dekl_cons_pli; ! pli - Plural Nominative has -и
+    адвокат N2dekl_cons_anim_ply; ! animate noun (different ending in accusative)
+    человек N2dekl_cons_anim_pli; ! irregular plural forms using a different stem (люди, людей, людям...)
+    озер N2dekl_o; ! -е -> -ё change in plural (озёра, озёр...)
+    пол N2dekl_e;
+
+    кроват N3dekl;
+    тетрад N3dekl;
+    мат N3dekl_anim; ! irregular forms, suffix -ер is inserted (матери, матерью, матерей...)
+
+    шоссе N0dekl; ! indeclinable word
+
+! Define the noun declension paradigms
+
+LEXICON N1dekl_a
+    +N+Sg+Nom:^а # ;
+    +N+Sg+Gen:^ы # ;
+    +N+Sg+Dat:^е # ;
+    +N+Sg+Acc:^у # ;
+    +N+Sg+Ins:^ой # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^ы # ;
+    +N+Pl+Gen:^ # ;
+    +N+Pl+Dat:^ам # ;
+    +N+Pl+Acc:^ы # ;
+    +N+Pl+Ins:^ами # ;
+    +N+Pl+Pre:^ах # ;
+
+LEXICON N1dekl_ya
+    +N+Sg+Nom:^я # ;
+    +N+Sg+Gen:^и # ;
+    +N+Sg+Dat:^е # ;
+    +N+Sg+Acc:^ю # ;
+    +N+Sg+Ins:^ей # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^и  # ;
+    +N+Pl+Gen:^ь  # ;
+    +N+Pl+Dat:^ям # ;
+    +N+Pl+Acc:^и # ;
+    +N+Pl+Ins:^ями # ;
+    +N+Pl+Pre:^ях # ;
+
+LEXICON N2dekl_cons_ply
+    +N+Sg+Nom:^ # ;
+    +N+Sg+Gen:^Dа # ;
+    +N+Sg+Dat:^Dу # ;
+    +N+Sg+Acc:^ # ;
+    +N+Sg+Ins:^Dом # ;
+    +N+Sg+Pre:^Dе # ;
+
+    +N+Pl+Nom:^Dы # ;
+    +N+Pl+Gen:^Dов # ;
+    +N+Pl+Dat:^Dам # ;
+    +N+Pl+Acc:^Dы # ;
+    +N+Pl+Ins:^Dами # ;
+    +N+Pl+Pre:^Dах # ;
+
+LEXICON N2dekl_cons_pli
+    +N+Sg+Nom:^ # ;
+    +N+Sg+Gen:^а # ;
+    +N+Sg+Dat:^у # ;
+    +N+Sg+Acc:^ # ;
+    +N+Sg+Ins:^ом # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^и # ;
+    +N+Pl+Gen:^ов # ;
+    +N+Pl+Dat:^ам # ;
+    +N+Pl+Acc:^и # ;
+    +N+Pl+Ins:^ами # ;
+    +N+Pl+Pre:^ах # ;
+
+LEXICON N2dekl_cons_anim_ply
+    +N+Sg+Nom:^ # ;
+    +N+Sg+Gen:^а # ;
+    +N+Sg+Dat:^у # ;
+    +N+Sg+Acc:^а # ;
+    +N+Sg+Ins:^ом # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^ы # ;
+    +N+Pl+Gen:^ов # ;
+    +N+Pl+Dat:^ам # ;
+    +N+Pl+Acc:^ов # ;
+    +N+Pl+Ins:^ами # ;
+    +N+Pl+Pre:^ах # ;
+
+LEXICON N2dekl_cons_anim_pli
+    +N+Sg+Nom:^ # ;
+    +N+Sg+Gen:^а # ;
+    +N+Sg+Dat:^у # ;
+    +N+Sg+Acc:^а # ;
+    +N+Sg+Ins:^ом # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^и # ;
+    +N+Pl+Gen:^ов # ;
+    +N+Pl+Dat:^ам # ;
+    +N+Pl+Acc:^ов # ;
+    +N+Pl+Ins:^ами # ;
+    +N+Pl+Pre:^ах # ;
+
+LEXICON N2dekl_o
+    +N+Sg+Nom:^о  # ;
+    +N+Sg+Gen:^а # ;
+    +N+Sg+Dat:^у # ;
+    +N+Sg+Acc:^о # ;
+    +N+Sg+Ins:^ом # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^Sа # ;
+    +N+Pl+Gen:^S # ;
+    +N+Pl+Dat:^Sам # ;
+    +N+Pl+Acc:^Sа # ;
+    +N+Pl+Ins:^Sами # ;
+    +N+Pl+Pre:^Sах # ;
+
+LEXICON N2dekl_e
+    +N+Sg+Nom:^е # ;
+    +N+Sg+Gen:^я # ;
+    +N+Sg+Dat:^ю # ;
+    +N+Sg+Acc:^е # ;
+    +N+Sg+Ins:^ем # ;
+    +N+Sg+Pre:^е # ;
+
+    +N+Pl+Nom:^я # ;
+    +N+Pl+Gen:^ей # ;
+    +N+Pl+Dat:^ям # ;
+    +N+Pl+Acc:^я # ;
+    +N+Pl+Ins:^ями # ;
+    +N+Pl+Pre:^ях # ;
+
+LEXICON N3dekl
+    +N+Sg+Nom:^ь  # ;
+    +N+Sg+Gen:^Iи # ;
+    +N+Sg+Dat:^Iи # ;
+    +N+Sg+Acc:^ь # ;
+    +N+Sg+Ins:^Iью # ;
+    +N+Sg+Pre:^Iи # ;
+
+    +N+Pl+Nom:^Iи  # ;
+    +N+Pl+Gen:^Iей  # ;
+    +N+Pl+Dat:^Iям # ;
+    +N+Pl+Acc:^Iи # ;
+    +N+Pl+Ins:^Iями # ;
+    +N+Pl+Pre:^Iях # ;
+
+LEXICON N3dekl_anim
+    +N+Sg+Nom:^ь  # ;
+    +N+Sg+Gen:^Iи # ;
+    +N+Sg+Dat:^Iи # ;
+    +N+Sg+Acc:^ь # ;
+    +N+Sg+Ins:^Iью # ;
+    +N+Sg+Pre:^Iи # ;
+
+    +N+Pl+Nom:^Iи  # ;
+    +N+Pl+Gen:^Iей  # ;
+    +N+Pl+Dat:^Iям # ;
+    +N+Pl+Acc:^Iей # ;
+    +N+Pl+Ins:^Iями # ;
+    +N+Pl+Pre:^Iях # ;
+
+LEXICON N0dekl
+    +N+Sg+Nom:^ # ;
+    +N+Sg+Gen:^ # ;
+    +N+Sg+Dat:^ # ;
+    +N+Sg+Acc:^ # ;
+    +N+Sg+Ins:^ # ;
+    +N+Sg+Pre:^ # ;
+
+    +N+Pl+Nom:^ # ;
+    +N+Pl+Gen:^ # ;
+    +N+Pl+Dat:^ # ;
+    +N+Pl+Acc:^ # ;
+    +N+Pl+Ins:^ # ;
+    +N+Pl+Pre:^ # ;
